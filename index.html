@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bad Apple</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: monospace;
+            white-space: pre;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #ascii-display {
+            font-size: 20px; /* Increase this value to zoom in */
+            line-height: 1.1; /* Adjust the spacing between lines */
+            margin-top: 20px;
+        }
+
+        #play-button {
+            font-size: 24px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="ascii-display"></div>
+    <button id="play-button">Play</button>
+    
+    <audio id="audio-player">
+        <source src="bad_apple.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
