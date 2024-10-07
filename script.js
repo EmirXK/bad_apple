@@ -9,8 +9,6 @@ fetch('framesData.lz')
     })
     .catch(error => console.error('Error fetching framesData.lz:', error));
 
-
-
 function initializeAnimation(framesData) {
     const frameCount = framesData.length;  // Total number of frames
     const fps = 30;  // Frames per second
@@ -20,34 +18,36 @@ function initializeAnimation(framesData) {
     const playButton = document.getElementById('play-button');
     let currentFrame = 0;
 
-    // Hide mouse cursor after inactivity
-    let mouseMoveTimeout;
-    document.body.style.cursor = 'default';  // Show cursor by default
+    // 4:3 aspect ratio dimensions
+    const aspectRatio = 4 / 3;
 
-    function hideCursor() {
-        document.body.style.cursor = 'none';  // Hide cursor
-    }
+    // Function to adjust the size of the ASCII display while maintaining aspect ratio
+    function adjustDisplaySize() {
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
 
-    function resetCursorTimeout() {
-        document.body.style.cursor = 'default';  // Show cursor on activity
-        clearTimeout(mouseMoveTimeout);  // Clear previous timeout
-        mouseMoveTimeout = setTimeout(hideCursor, 3000);  // Hide cursor after 3 seconds of inactivity
-    }
+        // Set the width and height based on the aspect ratio
+        let displayWidth = windowWidth;
+        let displayHeight = windowWidth / aspectRatio;
 
-    document.addEventListener('mousemove', resetCursorTimeout);
-    resetCursorTimeout();  // Set initial cursor hiding behavior
-
-    // Fullscreen function
-    function toggleFullscreen() {
-        if (!document.fullscreenElement) {
-            document.documentElement.requestFullscreen();
+        // If the height exceeds the window height, adjust accordingly
+        if (displayHeight > windowHeight) {
+            displayHeight = windowHeight;
+            displayWidth = displayHeight * aspectRatio;
         }
+
+        // Adjust font size based on the calculated display size
+        const fontSize = displayWidth / 80;  // Adjust this value to fine-tune the size
+        asciiDisplay.style.fontSize = `${fontSize}px`;
     }
+
+    // Call the function initially and on window resize
+    adjustDisplaySize();
+    window.addEventListener('resize', adjustDisplaySize);
 
     // Play the animation when the button is clicked
     playButton.addEventListener('click', () => {
         playButton.style.display = 'none';  // Hide the play button
-        toggleFullscreen();  // Go fullscreen
         setTimeout(playAnimation, 1000);  // Delay animation start by 1 second
     });
 

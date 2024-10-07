@@ -15,12 +15,15 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         #ascii-display {
-            font-size: 20px; /* Increase this value to zoom in */
-            line-height: 1.1; /* Adjust the spacing between lines */
-            margin-top: 20px;
+            font-size: 20px; /* Initial value, will be updated dynamically */
+            line-height: 1.1;
         }
 
         #play-button {
@@ -32,13 +35,15 @@
             border: none;
             border-radius: 5px;
             margin-top: 20px;
+            position: absolute;
+            bottom: 20px;
         }
     </style>
 </head>
 <body>
     <div id="ascii-display"></div>
     <button id="play-button">Play</button>
-    
+
     <audio id="audio-player">
         <source src="bad_apple.mp3" type="audio/mp3">
         Your browser does not support the audio element.
