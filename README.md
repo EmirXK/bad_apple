@@ -1,5 +1,6 @@
 # Bad Apple ASCII Animation
 
+![image](https://github.com/user-attachments/assets/b23eea2c-5927-42f9-8fbd-66d438310474)
 
 ## Description
 
