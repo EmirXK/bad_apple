@@ -1,3 +1,23 @@
+let wakeLock = null;
+
+async function requestWakeLock() {
+    try {
+        wakeLock = await navigator.wakeLock.request('screen');
+        console.log('Wake Lock: Active');
+    } catch (err) {
+        console.error(`${err.name}, ${err.message}`);
+    }
+}
+
+function releaseWakeLock() {
+    if (wakeLock) {
+        wakeLock.release().then(() => {
+            wakeLock = null;
+            console.log('Wake Lock: Released');
+        });
+    }
+}
+
 fetch('framesData.lz')
     .then(response => response.text())
     .then(data => {
@@ -48,6 +68,7 @@ function initializeAnimation(framesData) {
     // Play the animation when the button is clicked
     playButton.addEventListener('click', () => {
         playButton.style.display = 'none';  // Hide the play button
+        requestWakeLock(); // Request the wake lock when animation starts
         setTimeout(playAnimation, 1000);  // Delay animation start by 1 second
     });
 
@@ -67,6 +88,7 @@ function initializeAnimation(framesData) {
             } else {
                 // Stop the animation after the last frame
                 asciiDisplay.textContent = framesData[framesData.length - 1].replace(/\\n/g, '\n');  // Display the last frame
+                releaseWakeLock(); // Release the wake lock after the last frame
                 return; // Exit the function to stop rendering
             }
 
@@ -76,4 +98,17 @@ function initializeAnimation(framesData) {
         audioPlayer.play();  // Start the audio
         renderFrame();  // Start rendering the frames
     }
+
+    // Release the wake lock when the page is hidden or when exiting fullscreen
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') {
+            releaseWakeLock();
+        }
+    });
+
+    document.addEventListener('fullscreenchange', () => {
+        if (!document.fullscreenElement) {
+            releaseWakeLock();
+        }
+    });
 }
