@@ -11,21 +11,25 @@
             color: white;
             font-family: monospace;
             white-space: pre;
-            text-align: center;
             margin: 0;
             padding: 0;
             overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 100vh; /* Ensures the content takes up the full height of the viewport */
+            flex-direction: column; /* Stack the button and ASCII display vertically */
         }
-
+    
         #ascii-display {
             font-size: 20px; /* Initial value, will be updated dynamically */
             line-height: 1.1;
+            text-align: center; /* Ensures the ASCII art is centered */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-
+    
         #play-button {
             font-size: 24px;
             padding: 10px 20px;
@@ -35,10 +39,13 @@
             border: none;
             border-radius: 5px;
             margin-top: 20px;
-            position: absolute;
-            bottom: 20px;
+            position: absolute; /* Make the button float above other content */
+            top: 50%; /* Position it vertically in the center */
+            left: 50%; /* Position it horizontally in the center */
+            transform: translate(-50%, -50%); /* Correct for the button's own size */
         }
     </style>
+    
 </head>
 <body>
     <div id="ascii-display"></div>

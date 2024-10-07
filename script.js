@@ -37,7 +37,7 @@ function initializeAnimation(framesData) {
         }
 
         // Adjust font size based on the calculated display size
-        const fontSize = displayWidth / 80;  // Adjust this value to fine-tune the size
+        const fontSize = displayWidth / 62;  // Adjust this value to fine-tune the size
         asciiDisplay.style.fontSize = `${fontSize}px`;
     }
 
