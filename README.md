@@ -4,7 +4,7 @@
 
 ## Description
 
-This project features an ASCII animation of "Bad Apple," an iconic song, displayed in a web browser. The animation utilizes ASCII art frames stored in a compressed format, which are rendered in real-time alongside an audio track. It leverages modern web technologies, including HTML, CSS, and JavaScript, and is designed to provide a fun and nostalgic experience.
+This project features an ASCII animation of "Bad Apple" displayed in a web browser. The animation utilizes ASCII art frames stored in a compressed format, which are displayed in real-time alongside an audio track.
 
 ## Live Demo
 
