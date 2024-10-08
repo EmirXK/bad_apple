@@ -69,7 +69,15 @@ function initializeAnimation(framesData) {
     playButton.addEventListener('click', () => {
         playButton.style.display = 'none';  // Hide the play button
         requestWakeLock(); // Request the wake lock when animation starts
-        setTimeout(playAnimation, 1000);  // Delay animation start by 1 second
+
+        // Pre-load the audio without playing it (this satisfies iOS's interaction requirement)
+        audioPlayer.load(); 
+
+        // Set a timeout to start both audio and animation simultaneously
+        setTimeout(() => {
+            audioPlayer.play();  // Play the audio after the 1-second delay
+            playAnimation();  // Start the animation after the same delay
+        }, 500);  // Delay both by 0.5 seconds for sync
     });
 
     // Function to play the animation
@@ -95,7 +103,6 @@ function initializeAnimation(framesData) {
             requestAnimationFrame(renderFrame);  // Continue animation loop
         }
 
-        audioPlayer.play();  // Start the audio
         renderFrame();  // Start rendering the frames
     }
 
