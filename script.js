@@ -75,9 +75,9 @@ function initializeAnimation(framesData) {
 
         // Set a timeout to start both audio and animation simultaneously
         setTimeout(() => {
-            audioPlayer.play();  // Play the audio after the 1-second delay
+            audioPlayer.play();  // Play the audio after the delay
             playAnimation();  // Start the animation after the same delay
-        }, 500);  // Delay both by 0.5 seconds for sync
+        }, 250);  // Delay both for sync
     });
 
     // Function to play the animation
