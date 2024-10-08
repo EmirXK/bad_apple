@@ -67,19 +67,24 @@ function initializeAnimation(framesData) {
 
     // Play the animation when the button is clicked
     playButton.addEventListener('click', () => {
-        playButton.style.display = 'none';  // Hide the play button
+        // Disable the play button to prevent further clicks
+        playButton.disabled = true;
+        
+        // Hide the play button visually
+        playButton.style.display = 'none';  
+        
         requestWakeLock(); // Request the wake lock when animation starts
-
+    
         // Pre-load the audio without playing it (this satisfies iOS's interaction requirement)
         audioPlayer.load(); 
-
+    
         // Set a timeout to start both audio and animation simultaneously
         setTimeout(() => {
             audioPlayer.play();  // Play the audio after the delay
             playAnimation();  // Start the animation after the same delay
         }, 250);  // Delay both for sync
     });
-
+    
     // Function to play the animation
     function playAnimation() {
         const startTime = performance.now();
